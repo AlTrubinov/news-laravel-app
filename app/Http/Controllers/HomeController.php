@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $articles = Article::lastLimit(6);
+        return view('app.home', compact('articles'));
+    }
+
+     public function suc_login()
+    {
+        return view('app.success-login');
     }
 }
