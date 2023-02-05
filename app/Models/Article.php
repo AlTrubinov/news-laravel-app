@@ -46,4 +46,9 @@ class Article extends Model
     {
         return $query->with('tags', 'state')->orderBy('created_at', 'desc')->paginate($numbers);
     }
+
+    public function scopeFindBySlug($query, $slug)
+    {
+        return $query->with('tags', 'state')->where('slug', $slug)->firstOrFail();
+    }
 }
