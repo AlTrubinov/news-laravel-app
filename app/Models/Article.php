@@ -27,16 +27,23 @@ class Article extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function getBodyPreview(){
+    public function getBodyPreview()
+    {
         return Str::limit($this->body, 100);
     }
 
-    public function createdAtForHumans(){
+    public function createdAtForHumans()
+    {
         return $this->created_at->diffForHumans();
     }
 
     public function scopeLastLimit($query, $numbers)
     {
         return $query->with('tags', 'state')->orderBy('created_at', 'desc')->limit($numbers)->get();
+    }
+
+    public function scopeAllPaginate($query, $numbers)
+    {
+        return $query->with('tags', 'state')->orderBy('created_at', 'desc')->paginate($numbers);
     }
 }

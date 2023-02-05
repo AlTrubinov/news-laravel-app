@@ -18,3 +18,5 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Auth::routes();
 
 Route::get('/success-login', [App\Http\Controllers\HomeController::class, 'suc_login'])->name('success-login');
+
+Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'index'])->name('article.index');
